@@ -25,6 +25,7 @@ const signupSchema = yup.object().shape({
 
 export default function Signup() {
   const router = useRouter()
+  
   const { register, handleSubmit, reset, formState: { isSubmitting, isValid } } = useForm<SignupFormData>({
     resolver: yupResolver(signupSchema),
     mode: "onChange"
@@ -32,7 +33,7 @@ export default function Signup() {
 
   const onSubmit = async (data: SignupFormData) => {
     try {
-      // --- Supabase Auth ---
+
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
@@ -44,7 +45,7 @@ export default function Signup() {
         return
       }
 
-      // --- چک کردن پروفایل تکراری بر اساس userid ---
+   
       const { data: existingProfile } = await supabase
         .from('profiles')
         .select('userid')
@@ -56,7 +57,7 @@ export default function Signup() {
         return
       }
 
-      // --- Insert پروفایل جدید ---
+  
       const { error: profileError } = await supabase
         .from('profiles')
         .insert([{
@@ -70,7 +71,7 @@ export default function Signup() {
         return
       }
 
-      // --- پیام موفقیت و ریست فرم ---
+    
       toast.success("Signup successful! Please check your email to verify your account.")
       reset()
       setTimeout(() => {
@@ -87,7 +88,7 @@ export default function Signup() {
 
   return (
     <div className="flex flex-col items-center mt-8 md:mt-0  md:justify-center">
-      {/* Header */}
+ 
       <div className="flex flex-col items-center justify-center gap-6 md:gap-5 md:mb-6">
         <h3 className="text-[#555555] font-normal text-base md:text-2xl md:font-medium md:text-[#3B3B3B]">
           Create your personal account

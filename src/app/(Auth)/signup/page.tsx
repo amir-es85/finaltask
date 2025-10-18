@@ -37,7 +37,7 @@ export default function Signup() {
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
-        options: { emailRedirectTo: `${window.location.origin}/login` }
+        options: { emailRedirectTo: "https://fundforfoundamir.netlify.app/login" }
       })
 
       if (authError || !authData.user) {

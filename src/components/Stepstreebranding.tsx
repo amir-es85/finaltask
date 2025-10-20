@@ -4,7 +4,7 @@ import Link from "next/link";
 function Stepstreebranding() {
   return (
     <div className="flex flex-col items-center  text-center md:h-screen px-4 mt">
-      {/* عنوان بالا */}
+      {/* dعنوان بالا */}
       <h1 className="text-[#644FC1] text-xl md:text-3xl font-semibold mb-6">
         Congratulation
       </h1>

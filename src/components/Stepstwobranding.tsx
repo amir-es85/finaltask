@@ -21,7 +21,7 @@ function Stepstwobranding({ prevstap }: { prevstap: () => void }) {
       new URL(value);
       return true;
     } catch {
-      return "فرمت URL معتبر نیست";
+      return"Please enter a valid URL";
     }
   };
 
@@ -68,14 +68,20 @@ function Stepstwobranding({ prevstap }: { prevstap: () => void }) {
                 </option>
               ))}
             </select>
-            <input
-              className='
-                border border-1.5 outline-0 w-full rounded py-2 border-[#644FC1]
-                md:w-2/3
-              '
-              {...register(`platform.${i}.url`, { validate: validateURL })}
-              placeholder="https://example.com"
-            />
+            <div className="w-full md:w-2/3 flex flex-col">
+    <input
+      className="
+        border border-1.5 outline-0 w-full rounded py-2 border-[#644FC1]
+      "
+      {...register(`platform.${i}.url`, { validate: validateURL })}
+      placeholder="https://example.com"
+    />
+    {errors.platform?.[i]?.url && (
+      <p className="text-red-500 text-sm mt-1">
+        {errors.platform[i].url.message}
+      </p>
+    )}
+  </div>
           </div>
         ))}
       </div>

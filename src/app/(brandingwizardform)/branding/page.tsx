@@ -26,6 +26,7 @@ function Branding() {
   const [steps, setsteps] = useState<number>(1)
 
   const methods = useForm<brandingformsvalues>({
+    mode:"onChange",
     defaultValues: {
       brand_name: "",
       country: "",
@@ -98,13 +99,13 @@ function Branding() {
   return (
     <ProtectedRoute>
       <FormProvider {...methods}>
-        <div className="flex flex-col items-center mt-10">
+        <div className="flex flex-col items-center mt-4">
           <div className="flex items-center justify-center gap-3 mb-8">
             {/* دکمه مرحله قبلی با فلش */}
             <button
               type="button"
               onClick={prevstep}
-              disabled={steps === 1}
+              disabled={steps === 1||steps === 3}
               className={`w-8 h-8 flex items-center justify-center rounded-full
                 ${steps === 1
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"

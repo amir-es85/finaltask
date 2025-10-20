@@ -11,7 +11,7 @@ const defaultTags: tagoption[] = [
 ];
 
 function Stepsonebranding({ nextstep }: { nextstep: () => void }) {
-  const { register, control, formState: { isValid } } = useFormContext<brandingformsvalues>();
+  const { register, control, formState: { isValid ,errors} } = useFormContext<brandingformsvalues>();
 
   return (
     <div className="container mx-auto px-4 flex flex-col items-start justify-center">
@@ -37,8 +37,16 @@ function Stepsonebranding({ nextstep }: { nextstep: () => void }) {
               type="text"
               
               className="border border-[1px] border-[#644FC1] px-2 py-1.5 outline-0 rounded w-full md:py-2 md:text-base"
-              {...register("brand_name", { required: "brand_name is required ," })}
+              {...register("brand_name", { required: "brand_name is required ,",
+                minLength:{
+                  value:3,
+                  message:"Brand name must be at least 3 characters"
+                }
+               })}
             />
+           {errors.brand_name && (
+      <p className="text-red-500 text-sm mt-1">{errors.brand_name.message}</p>
+    )}
           </div>
 
           <div className="flex-1 mt-3 md:mt-0">
@@ -49,8 +57,16 @@ function Stepsonebranding({ nextstep }: { nextstep: () => void }) {
             <input
               type="text"
               className="border border-[1px] border-[#644FC1] px-2 py-1.5 outline-0 rounded w-full md:py-2 md:text-base"
-              {...register("country", { required: "country is required" })}
+              {...register("country", { required: "country is required",
+                minLength:{
+                  value:3,
+                  message:"Country must be at least 3 characters"
+                }
+               })}
             />
+            {errors.country && (
+      <p className="text-red-500 text-sm mt-1">{errors.country.message}</p>
+    )}
           </div>
         </div>
 
@@ -68,8 +84,14 @@ function Stepsonebranding({ nextstep }: { nextstep: () => void }) {
             <input
               type="text"
               className="border border-[1px] border-[#644FC1] px-2 py-1.5 outline-0 rounded w-full md:py-2 md:text-base"
-              {...register("category", { required: "category is required" })}
+              {...register("category", { required: "category is required",
+                minLength:{
+                  value:3,
+                  message:"Category must be at least 3 characters"
+                }
+               })}
             />
+            {errors.category &&(<p className="text-red-500 text-sm mt-1">{errors.category.message}</p>)}
           </div>
 
           <div className="flex-1 min-w-0">
@@ -80,8 +102,14 @@ function Stepsonebranding({ nextstep }: { nextstep: () => void }) {
             <input
               type="text"
               className="border border-[1px] border-[#644FC1] px-2 py-1.5 outline-0 rounded w-full md:py-2 md:text-base"
-              {...register("sub_category", { required: "sub_category is required" })}
+              {...register("sub_category", { required: "sub_category is required",
+                minLength:{
+                  value:3,
+                  message:"Sub_Category must be at least 3 characters"
+                }
+               })}
             />
+            {errors.sub_category&&(<p className="text-red-500 text-sm mt-1">{errors.sub_category.message}</p>)}
           </div>
         </div>
 

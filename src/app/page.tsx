@@ -60,7 +60,7 @@ export default function Home() {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.6 }}
         >
-          If your branding is established and you're looking for continuous
+          If your branding is established and youre looking for continuous
           support, get started now.
         </motion.p>
 

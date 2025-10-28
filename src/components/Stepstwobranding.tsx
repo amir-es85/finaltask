@@ -1,9 +1,12 @@
 import { brandingformsvalues } from '@/app/(brandingwizardform)/branding/page'
-import React from 'react'
+import React, { useState } from 'react'
 import { useFormContext } from 'react-hook-form'
+import { motion } from 'framer-motion';
+
 
 function Stepstwobranding({ prevstap }: { prevstap: () => void }) {
   const { register, watch, formState: { isValid, errors, isSubmitting } } = useFormContext<brandingformsvalues>()
+  const [exit , setexit]=useState<boolean>(false)
 
   const platforms = watch("platform")
   const platformoption = [
@@ -26,9 +29,11 @@ function Stepstwobranding({ prevstap }: { prevstap: () => void }) {
   };
 
   return (
-    <div className='
+    <div 
+    
+    className='
       container mx-auto px-4 flex flex-col items-start justify-center
-      md:items-center md:justify-start md:max-w-[900px] md:mt-10
+      md:items-center md:justify-start md:max-w-[900px] 
     '>
       <p className='text-[#644FC1] text-lg md:text-2xl font-semibold mt-5 md:self-start'>
         Detailed info
@@ -87,6 +92,7 @@ function Stepstwobranding({ prevstap }: { prevstap: () => void }) {
       </div>
 
       <button
+      onClick={()=>setexit(true)}
         type='submit'
         disabled={!isValid || isSubmitting}
         className='

@@ -1,9 +1,14 @@
 'use client'
-import Link from "next/link";
 
-function Stepstreebranding() {
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+function Stepstreebranding({brandid}:{brandid:string|null}) {
   return (
-    <div className="flex flex-col items-center  text-center md:h-screen px-4 mt">
+    <div 
+      className="flex flex-col items-center  text-center md:h-screen px-4 mt"
+      
+    >
       {/* dعنوان بالا */}
       <h1 className="text-[#644FC1] text-xl md:text-3xl font-semibold mb-6">
         Congratulation
@@ -26,12 +31,12 @@ function Stepstreebranding() {
         <p className="text-[#717171] text-sm md:text-base font-light">
           Welcome aboard! Let’s dive in and get started.
         </p>
-        <Link
-          href="/"
+        {brandid && <Link
+          href={`/Brands/${brandid}`}
           className="py-2 px-6 bg-[#644FC1] text-white rounded mt-8 hover:bg-[#5844b5] transition"
         >
           Go to my profile
-        </Link>
+        </Link>}
       </div>
     </div>
   );

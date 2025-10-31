@@ -84,7 +84,7 @@ else{toast.success("Contribution deleted successfully!")
   },[id])
   
   return (
-   <div className="flex flex-col md:flex-row-reverse items-start justify-between gap-8 bg-white rounded-2xl shadow-lg p-8">
+   <div className="flex flex-col md:flex-row-reverse items-start justify-between gap-8 bg-white rounded-2xl  p-8">
 
   {/* ✅ Preview Section */}
   <div className="w-full md:w-1/2 flex flex-col items-center">

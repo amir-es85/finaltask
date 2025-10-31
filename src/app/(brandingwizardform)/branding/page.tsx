@@ -4,7 +4,7 @@ import Stepsonebranding from "@/components/Stepsonebranding";
 import Stepstwobranding from "@/components/Stepstwobranding";
 import Stepstreebranding from "@/components/Stepstreebranding";
 import { supabase } from "@/lib/supabaseClinet";
-import { toast, ToastContainer } from 'react-toastify'
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
@@ -153,17 +153,7 @@ function Branding() {
         </div>
       </FormProvider>
 
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      
     </ProtectedRoute>
   )
 }

@@ -24,7 +24,7 @@ export type imageuplode = {
   cover: FileList
 }
 
-function Covermodal({ brandid }: { brandid: string | string[] | undefined }) {
+function Covermodal({ brandid }: { brandid: string | string[] | undefined|null }) {
  const {image , setimage}=useData()
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
 

@@ -15,25 +15,25 @@ import {
 import { useEffect, useState } from "react";
 import Covermodal, { image } from "@/components/modal/covermodal";
 import { useData } from "@/hooks/Datacontext";
-import Image from "next/image";
-import { div } from "framer-motion/client";
 import Link from 'next/link';
 import Profilemodal from "@/components/modal/profilemodal";
+import Contribuot from "@/components/editbrandcomponents/Contribuot";
 type platformdata = {
   brand_id: string
   label: string
   link: string
-  id:string
+  id: string
 }
 
 function Brandpage() {
   const params = useParams()
-  const brandid = params.id // UUID مستقیم استفاده می‌شود
-  const [branddid, setbrandid] = useState<string | string[] | undefined>("")
+  const brandid = params.id 
+
+
   const [platformdataa, setplatformdata] = useState<platformdata[] | null>(null)
-  const{image,setimage}=useData()
-  
-  
+  const { image, setimage,branddid,setbrandid } = useData()
+
+
   useEffect(() => {
     const fechdata = async () => {
       const { data: imagedata, error: imageeror } = await supabase.from("branding").select("*").eq("id", brandid)
@@ -47,6 +47,7 @@ function Brandpage() {
     fechdata()
   }, [brandid])
   useEffect(() => {
+   
     setbrandid(brandid)
   }, [brandid])
 
@@ -60,9 +61,10 @@ function Brandpage() {
 
 
 
+
   return (
     <ProtectedRoute>
-      <div className="ml-4.5 mr-4.5 flex flex-col items-center justify-center">
+      <div className="ml-4.5 mr-4.5 flex flex-col  justify-center">
         <div className="bg-gradient-to-r from-[#6E79D6] via-[#9EA9FF] to-[#6E79D6] w-full py-5 px-4 flex flex-col rounded gap-3.5 md:gap-13 md:py-7 md:px-7">
           <Dialog>
             <DialogTrigger className="self-end py-1.5 px-2 font-semibold bg-[#EDE9FE] text-[#644FC1] text-lg border border-2 border-[#AA99EC] rounded outline-0 text-center cursor-pointer md:py-3 md:block md:px-4 md:text-xl">
@@ -125,7 +127,8 @@ function Brandpage() {
 
 
         </div>
-
+        <div className="flex flex-col items-center justify-center mt-10"></div>
+<Contribuot />
       </div>
     </ProtectedRoute>
   )

@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 type profile = {
     profile: FileList
 }
-function Profilemodal({ brandid }: { brandid: string | string[] | undefined }) {
+function Profilemodal({ brandid }: { brandid: string | string[] | undefined |null}) {
     const { image, setimage } = useData()
     const [previewUrl, setPreviewUrl] = useState<string | null>(null)
     const { register, handleSubmit, watch, formState: { isSubmitting }, reset } = useForm<profile>()

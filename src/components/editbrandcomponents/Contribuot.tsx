@@ -73,7 +73,7 @@ useEffect(()=>{
 
 
     return (
-        <div className="md:ml-20 md:mr-20 ml-6 mr-6">
+        <div className="md:ml-20 md:mr-20 ml-1 mr-1">
             <h2 className="text-[#444444] md:text-2xl text-lg font-semibold mb-2 md:mb-4">Coontribution Tier</h2>
             <h3 className="text-[#444444] md:text-xl text-base font-medium ml-3 md:mb-11 mb-6">Recurring or One time</h3>
             <div className="grid gap-13 grid-cols-1 md:grid-cols-4 md:gap-7">

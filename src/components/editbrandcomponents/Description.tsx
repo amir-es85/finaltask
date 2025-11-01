@@ -36,7 +36,7 @@ function Description() {
                     </DialogContent>
                 </Dialog>
             </div>
-            <p className="text-gray-700 md:text-lg text-base font-normal ml-1 ">{description?.description}</p>
+            <p className="text-gray-700 md:text-lg text-base font-normal ml-1 break-words break-all whitespace-normal w-full">{description?.description}</p>
         </div>
     )
 }

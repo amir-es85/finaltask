@@ -28,10 +28,10 @@ type Contribute = {
 
 function Contribuot() {
     const { branddid } = useData()
-    const [openmodal , setopenmodal]=useState<boolean>(false)
+    const [openmodal , setopenmodal]=useState<number | null>(null)
     const [contributions, setContributions] = useState<Contribute[]>([]);
    const fechdata = async () => {
-        const { data, error } = await supabase.from("contribuot").select("*").eq("brand_id", branddid).order("created_at", { ascending: false })
+        const { data, error } = await supabase.from("contribuot").select("*").eq("brand_id", branddid)
         if (error) {
             toast.error(error.message)
             console.error(error.message);
@@ -73,7 +73,7 @@ useEffect(()=>{
 
 
     return (
-        <div className="md:ml-20 md:mr-20 ml-1 mr-1">
+        <div className="">
             <h2 className="text-[#444444] md:text-2xl text-lg font-semibold mb-2 md:mb-4">Coontribution Tier</h2>
             <h3 className="text-[#444444] md:text-xl text-base font-medium ml-3 md:mb-11 mb-6">Recurring or One time</h3>
             <div className="grid gap-13 grid-cols-1 md:grid-cols-4 md:gap-7">
@@ -84,7 +84,7 @@ useEffect(()=>{
                             <h1 className="text-center  text-[#444444] font-medium text-lg mt-5 mb-5.5 ">You are one the list</h1>
                             <p className="text-left mb-7  text-[#444444] font-semibold text-lg">start to <span className="text-[#644FC1]">{c.amont}</span></p>
                             <p className="line-clamp-5 break-words text-sm text-gray-400 text-left mb-5 w-full max-w-full">{c.deckription}</p>
-                            <Dialog open={openmodal} onOpenChange={setopenmodal}>
+                            <Dialog open={openmodal === c.id} onOpenChange={()=>setopenmodal(openmodal === c.id ? null : c.id)}>
                                 <DialogTrigger className="w-full bg-[#644FC1] rounded text-white py-1.5 ">Edit Tier</DialogTrigger>
                                 <DialogContent className="sm:max-w-3xl"><Editcontribuote id={c.id} setopenmodal={setopenmodal}  handleItemDeleted={handleItemDeleted}/></DialogContent>
                             </Dialog>

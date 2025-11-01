@@ -10,7 +10,7 @@ interface updateform{
   deckription:string,
   amont:string
 } 
-function Editcontribuote({ id ,setopenmodal,handleItemDeleted }: { id: number,setopenmodal:React.Dispatch<React.SetStateAction<boolean>>,handleItemDeleted:(id:number)=>void }) {
+function Editcontribuote({ id ,setopenmodal,handleItemDeleted }: { id: number,setopenmodal: React.Dispatch<React.SetStateAction<number | null>>,handleItemDeleted:(id:number)=>void }) {
   const [ditaa , setdataa]=useState<updateform|null>(null)
   const fechdata=async()=>{
     if(!id){return}
@@ -61,7 +61,7 @@ if(deleteeror){
 }
 else{toast.success("Contribution deleted successfully!")
   handleItemDeleted?.(id)
-  setopenmodal(false)
+  setopenmodal(null)
 }
   }
   useEffect(()=>{

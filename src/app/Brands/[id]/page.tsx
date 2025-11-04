@@ -11,7 +11,6 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-
 import { useEffect, useState } from "react";
 import Covermodal, { image } from "@/components/modal/covermodal";
 import { useData } from "@/hooks/Datacontext";
@@ -19,6 +18,8 @@ import Link from 'next/link';
 import Profilemodal from "@/components/modal/profilemodal";
 import Contribuot from "@/components/editbrandcomponents/Contribuot";
 import Description from './../../../components/editbrandcomponents/Description';
+import Teammember from './../../../components/editbrandcomponents/Teammember';
+
 type platformdata = {
   brand_id: string
   label: string
@@ -34,17 +35,17 @@ function Brandpage() {
   const [platformdataa, setplatformdata] = useState<platformdata[] | null>(null)
   const { image, setimage,branddid,setbrandid } = useData()
 
-
-  useEffect(() => {
-    const fechdata = async () => {
-      const { data: imagedata, error: imageeror } = await supabase.from("branding").select("*").eq("id", brandid)
-      if (imageeror) {
-        console.error(imageeror);
-      }
-      if (imagedata) {
-        setimage(imagedata[0])
-      }
+  const fechdata = async () => {
+    const { data: imagedata, error: imageeror } = await supabase.from("branding").select("*").eq("id", brandid)
+    if (imageeror) {
+      console.error(imageeror);
     }
+    if (imagedata) {
+      setimage(imagedata[0])
+    }
+  }
+  useEffect(() => {
+    
     fechdata()
   }, [brandid])
   useEffect(() => {
@@ -78,6 +79,7 @@ function Brandpage() {
               <Covermodal brandid={branddid} />
             </DialogContent>
           </Dialog>
+          
           <h2 className="text-[#F5F5F5] text-xl font-bold mt-1 md:text-4xl">Brand or Organization</h2>
           <h3 className="self-end text-white font-normal text-sm mt-5 md:text-lg">000$  totalcontribute</h3>
         </div>
@@ -102,7 +104,7 @@ function Brandpage() {
                       <DialogHeader>
                         <DialogTitle></DialogTitle>
                       </DialogHeader>
-                      <Profilemodal brandid={branddid} />
+                      <Profilemodal brandid={branddid} fechdata={fechdata}/>
                     </DialogContent>
                   </Dialog>
                 </div>
@@ -128,9 +130,10 @@ function Brandpage() {
 
 
         </div>
-        <div className="flex flex-col mt-13 gap-13 md:gap-10 max-w-5xl w-full mx-auto px-5 md:px-8">
-          <Contribuot />
-          <Description />
+        <div className="flex flex-col mt-13 md:mt-23 gap-13 md:gap-30 max-w-5xl w-full mx-auto px-5 md:px-8">
+          <div><Contribuot /></div>
+          <div><Description /></div>
+         <div> <Teammember /></div>
         </div>
       </div>
     </ProtectedRoute>

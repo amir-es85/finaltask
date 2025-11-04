@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 type profile = {
     profile: FileList
 }
-function Profilemodal({ brandid }: { brandid: string | string[] | undefined |null}) {
+function Profilemodal({ brandid , fechdata}: { brandid: string | string[] | undefined |null,fechdata:()=>void}) {
     const { image, setimage } = useData()
     const [previewUrl, setPreviewUrl] = useState<string | null>(null)
     const { register, handleSubmit, watch, formState: { isSubmitting }, reset } = useForm<profile>()
@@ -54,6 +54,7 @@ function Profilemodal({ brandid }: { brandid: string | string[] | undefined |nul
         }
         else {
             toast.success("Upload & update successful")
+            fechdata()
             reset()
         }
 

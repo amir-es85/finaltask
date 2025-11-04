@@ -26,7 +26,7 @@ function Description() {
     return (
         <div>
             <div className="flex items-center justify-start gap-3 mb-4">
-                <h2 className="text-[#444444] md:text-2xl text-lg font-semibold m-0 leading-none">َAbout</h2>
+                <h2 className="text-[#444444] md:text-2xl text-lg font-semibold m-0 leading-none">About</h2>
                 <Dialog open={open} onOpenChange={setopen}>
                     <DialogTrigger className="px-3 py-1 rounded bg-[#EDE9FE] border border-[#AA99EC] text-[#644FC1] font-medium text-sm md:text-base hover:bg-[#DDD6FE] transition leading-none">
                         Edit

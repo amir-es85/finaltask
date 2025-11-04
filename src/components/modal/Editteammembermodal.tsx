@@ -36,35 +36,36 @@ const cleanedData = Object.fromEntries(
     }
     return (
         <div className="flex items-center justify-center gap-8 md:flex-row flex-col">
-    <div className="shadow-2xl flex-2 rounded-2xl h-full">
+    {/* فرم در بخش اول */}
+    <div className="shadow-2xl flex-2 rounded-2xl h-full sm:h-[auto]">
         <h1 className="border border-b-[#E7E7E7] text-[#444444] font-medium text-lg text-center">Team member</h1>
         <form className="flex items-center justify-center flex-col gap-3 px-7 pt-7 pb-3.5" onSubmit={handleSubmit(onsubmit)}>
             <div className="w-full">
                 <label className="text-left text-sm font-light text-[#444444]">Name</label>
-                <Input className="border border-[1.5px] border-[#8D75F7] w-full"{...register("name")} />
+                <Input className="border border-[1.5px] border-[#8D75F7] w-full" {...register("name")} />
             </div>
             <div className="w-full">
                 <label className="text-left text-sm font-light text-[#444444]">Role</label>
                 <Controller
-              name="role" // نام فیلد
-              control={control} // اتصال کنترلر
-              defaultValue="" // مقدار پیش‌فرض
-              render={({ field }) => (
-                <Select {...field}>
-                  <SelectTrigger className="border border-[1.5px] border-[#8D75F7] w-full">
-                    <SelectValue placeholder="Select role" />
-                  </SelectTrigger>
-                  <SelectContent className="w-full">
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="user">User</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
+                    name="role"
+                    control={control}
+                    defaultValue=""
+                    render={({ field }) => (
+                        <Select {...field}>
+                            <SelectTrigger className="border border-[1.5px] border-[#8D75F7] w-full">
+                                <SelectValue placeholder="Select role" />
+                            </SelectTrigger>
+                            <SelectContent className="w-full">
+                                <SelectItem value="admin">Admin</SelectItem>
+                                <SelectItem value="user">User</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    )}
+                />
             </div>
             <div className="w-full">
                 <label className="text-left text-sm font-light text-[#444444]">Email</label>
-                <Input className="border border-[1.5px] border-[#8D75F7] w-full"{...register("emailadres")} />
+                <Input className="border border-[1.5px] border-[#8D75F7] w-full" {...register("emailadres")} />
             </div>
             <div className="w-full">
                 <label className="text-left text-sm font-light text-[#444444]">Discription</label>
@@ -87,7 +88,8 @@ const cleanedData = Object.fromEntries(
         </form>
     </div>
 
-    <div className="flex-1 flex flex-col shadow-2xl rounded-2xl h-full">
+    {/* بخش دوم (Preview) */}
+    <div className="flex-1 flex flex-col shadow-2xl rounded-2xl sm:h-[auto] h-full">
         <h1 className="border border-b-[#E7E7E7] text-[#444444] font-medium text-lg text-center w-full">Preview</h1>
         <div className="flex items-center justify-center px-7 pt-12 pb-3.5 self-center">
             <div className="relative bg-white border border-[#C7C6C6] rounded-2xl p-5 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
@@ -120,6 +122,7 @@ const cleanedData = Object.fromEntries(
         </div>
     </div>
 </div>
+
 
     )
 }

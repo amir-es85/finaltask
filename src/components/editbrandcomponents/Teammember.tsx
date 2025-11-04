@@ -63,7 +63,11 @@ export default function Teammember() {
             </Dialog>
             <Drawer>
               <DrawerTrigger className="sm:hidden block absolute top-3 right-3 text-gray-500 hover:text-[#644FC1] py-1 bg-[#F5F5F5] px-2 rounded"><FiEdit2 size={18} /></DrawerTrigger>
-              <DrawerContent className="!h-screen !max-h-screen overflow-y-auto"><Editteammembermodal id={c.id} /></DrawerContent>
+              <DrawerContent className="!h-[92vh] !max-h-[92vh] p-0 flex flex-col">
+              <div className="flex-1 overflow-y-auto px-4 pb-6">
+    <Editteammembermodal id={c.id} />
+  </div>
+  </DrawerContent>
             </Drawer>
 
             {/* تصویر پروفایل */}

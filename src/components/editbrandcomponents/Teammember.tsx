@@ -59,13 +59,13 @@ export default function Teammember() {
               <DialogTrigger className="sm:block hidden absolute top-3 right-3 text-gray-500 hover:text-[#644FC1] py-1 bg-[#F5F5F5] px-2 rounded">
                 <FiEdit2 size={18} />
               </DialogTrigger>
-              <DialogContent className="sm:max-w-4xl sm:block hidden"><Editteammembermodal id={c.id} /></DialogContent>
+              <DialogContent className="sm:max-w-4xl sm:block hidden"><Editteammembermodal  fechdata={fechdata} id={c.id} /></DialogContent>
             </Dialog>
             <Drawer>
               <DrawerTrigger className="sm:hidden block absolute top-3 right-3 text-gray-500 hover:text-[#644FC1] py-1 bg-[#F5F5F5] px-2 rounded"><FiEdit2 size={18} /></DrawerTrigger>
               <DrawerContent className="!h-[92vh] !max-h-[92vh] p-0 flex flex-col">
               <div className="flex-1 overflow-y-auto px-4 pb-6">
-    <Editteammembermodal id={c.id} />
+    <Editteammembermodal id={c.id} fechdata={fechdata} />
   </div>
   </DrawerContent>
             </Drawer>

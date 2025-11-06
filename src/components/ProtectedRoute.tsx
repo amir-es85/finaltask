@@ -6,7 +6,7 @@ import { supabase } from '@/lib/supabaseClinet'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const router = useRouter()
-  const [checking, setChecking] = useState(true) // برای نمایش اسپینر موقع چک کردن
+  const [checking, setChecking] = useState(true) 
 
   useEffect(() => {
     const checkAuth = async () => {

@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/Tostprovider";
 import { DataProvider } from "@/hooks/Datacontext";
+import Header from './../components/header/Header';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,7 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <DataProvider>
-        {children}
+          <Header />
+        <div className="pt-16"> {/* ارتفاع هدر، حدود 64px */}
+    {children}
+  </div>
         </DataProvider>
         <ToastProvider />
       </body>

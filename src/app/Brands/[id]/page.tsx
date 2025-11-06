@@ -11,7 +11,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Covermodal, { image } from "@/components/modal/covermodal";
 import { useData } from "@/hooks/Datacontext";
 import Link from 'next/link';
@@ -28,9 +28,18 @@ type platformdata = {
 }
 
 function Brandpage() {
+  const contribRef = useRef<HTMLDivElement>(null);
+  const descRef = useRef<HTMLDivElement>(null);
+  const teamRef = useRef<HTMLDivElement>(null);
   const params = useParams()
   const brandid = params.id 
 
+  const scrollToSection = (ref: React.RefObject<HTMLDivElement|null>) => {
+    if (ref.current) {
+      const offset = ref.current.getBoundingClientRect().top + window.scrollY - 100; // فاصله از بالا
+      window.scrollTo({ top: offset, behavior: "smooth"});
+    }
+  };
 
   const [platformdataa, setplatformdata] = useState<platformdata[] | null>(null)
   const { image, setimage,branddid,setbrandid } = useData()
@@ -129,11 +138,23 @@ function Brandpage() {
           </button>
 
 
+
         </div>
-        <div className="flex flex-col mt-13 md:mt-23 gap-13 md:gap-30 max-w-5xl w-full mx-auto px-5 md:px-8">
-          <div><Contribuot /></div>
-          <div><Description /></div>
-         <div> <Teammember /></div>
+        <div className="flex justify-center gap-5 md:gap-8 pb-2 border-b-1 border-b-[#E7E7E7] mt-10 ">
+          <button onClick={() => scrollToSection(contribRef)} className="text-[#444444] font-medium hover:underline">
+            Contribute
+          </button>
+          <button onClick={() => scrollToSection(descRef)} className="text-[#444444] font-medium hover:underline">
+            Description
+          </button>
+          <button onClick={() => scrollToSection(teamRef)} className="text-[#444444] font-medium hover:underline">
+            Team
+          </button>
+        </div>
+        <div className="flex flex-col mt-13 md:mt-23 gap-17 md:gap-30 max-w-5xl w-full mx-auto px-5 md:px-8">
+          <div ref={contribRef}><Contribuot /></div>
+          <div ref={descRef}><Description /></div>
+         <div ref={teamRef}> <Teammember /></div>
         </div>
       </div>
     </ProtectedRoute>

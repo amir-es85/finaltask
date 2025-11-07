@@ -8,20 +8,46 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import {HoverCard,HoverCardContent,HoverCardTrigger}from '@/components/ui/hover-card'
-import Hover from './hover';
+import Hover, { username } from './hover';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sessioon ,setsession]=useState<Session|null>(null)
+  const [user , setuser]=useState<username|null|undefined>(null)
   const router = useRouter()
+  const username =(data:username)=>{
+    setuser(data)
+
+  }
+  
  async function auth (){
   
    const { data: { session } } = await supabase.auth.getSession()
    setsession(session)
  }
- useEffect(()=>{auth()},[])
+ useEffect(()=>{auth()
+  const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+      setsession(session) // هر تغییری در login/logout بلافاصله اعمال میشه
+    })
+
+    // تمیز کردن لیسنر
+    return () => {
+      listener.subscription.unsubscribe()
+    }
+ },[])
+ const fristname = user?.fristname[0].toUpperCase()
+ const lastname = user?.lastname[0].toUpperCase()
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-white md:px-10 px-5 py-2 border-b border-b-1 border-[#D7CFF9] flex items-center justify-between">
+    <motion.div
+    initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        type: "spring",
+        stiffness: 120
+      }}
+    className="fixed top-0 left-0 w-full z-50 bg-white md:px-10 px-5 py-2 border-b border-b-1 border-[#D7CFF9] flex items-center justify-between">
   
 
   <div className="flex items-center">
@@ -40,8 +66,8 @@ function Header() {
   <div className="flex items-center gap-6">
     {sessioon ? (
      <HoverCard>
-      <HoverCardTrigger className='px-1.5 bg-[#EDE9FE] py-1.5 cursor-pointer rounded-full border border-2 text-[#644FC1] font-semibold border-[#D7CFF9]'>AM</HoverCardTrigger>
-      <HoverCardContent><Hover /></HoverCardContent>
+      <HoverCardTrigger className='w-10 h-10 flex items-center justify-center bg-[#EDE9FE] py-2 cursor-pointer rounded-full border border-2 text-[#644FC1] font-semibold border-[#D7CFF9]'>{fristname||"A"}{lastname||"M"}</HoverCardTrigger>
+      <HoverCardContent><Hover usernamee={username}/></HoverCardContent>
      </HoverCard>
     ) : (
       <li className="bg-[#270F94] text-white py-2 px-5 transition rounded-xl font-semibold hover:opacity-50 text-base">
@@ -97,7 +123,7 @@ function Header() {
         )}
       </AnimatePresence>
 
-</div>
+</motion.div>
   )
 }
 

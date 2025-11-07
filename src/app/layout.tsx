@@ -32,7 +32,7 @@ export default function RootLayout({
       >
         <DataProvider>
           <Header />
-        <div className="pt-16"> {/* ارتفاع هدر، حدود 64px */}
+        <div className="pt-18"> {/* ارتفاع هدر، حدود 64px */}
     {children}
   </div>
         </DataProvider>

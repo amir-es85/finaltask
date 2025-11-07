@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { div } from "framer-motion/client";
 import Editcontribuote from './../modal/Editcontribuote';
-type Contribute = {
+export type Contribute = {
     id: number;
     name: string;
     deckription: string;

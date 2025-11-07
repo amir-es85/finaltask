@@ -39,7 +39,7 @@ function Explore() {
 
     return (
         <div className="grid  grid-cols-1 md:grid-cols-3 md:gap-5 md:px-20 px-4">
-            {allbrand.map((c)=>(<div className="border border-[#E7E7E7] md:border-0 rounded-t-2xl">
+            {allbrand.map((c)=>(<div key={c.id} className="border border-[#E7E7E7] md:border-0 rounded-t-2xl">
                 <div className="w-full h-30 rounded-t-2xl">
                     <img src={c.coverurl||"/download.jpg"} alt="" className="w-full h-full rounded-t-2xl object-cover"/>
                 </div>

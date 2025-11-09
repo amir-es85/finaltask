@@ -86,6 +86,12 @@ function Explore() {
     return () => clearTimeout(delay)
   }, [searchTerm])
 
+  useEffect(() => {
+  if (slider && slider.current) {
+    slider.current.update()
+  }
+}, [allbrand])
+
   // نمایش لودینگ فقط در لود اولیه
   if (loading) {
     return (

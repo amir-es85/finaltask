@@ -31,10 +31,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <DataProvider>
-          <Header />
-        <div className="pt-18"> {/* ارتفاع هدر، حدود 64px */}
-    {children}
-  </div>
+      
+        <Header />
+    <div className="pt-15">{children}</div>
+  
         </DataProvider>
         <ToastProvider />
       </body>

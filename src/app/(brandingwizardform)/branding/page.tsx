@@ -141,7 +141,7 @@ function Branding() {
     duration: 0.8,               // کمی طولانی‌تر برای حس smooth
     ease: [0.6, -0.05, 0.01, 0.99] // easing نرم و طبیعی
   }}
-  className="w-full shadow-lg rounded-xl"
+  
 >
 
             <form onSubmit={methods.handleSubmit(onsubmit)}>

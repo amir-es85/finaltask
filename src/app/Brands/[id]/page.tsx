@@ -165,21 +165,21 @@ const isOwner = userid === image?.userid;
 
         </div>
         <div className="flex justify-center gap-5 md:gap-8 pb-2 border-b-1 border-b-[#E7E7E7] mt-10 ">
-          <button onClick={() => scrollToSection(contribRef)} className="text-[#444444] font-medium hover:underline">
+          <button onClick={() => scrollToSection(contribRef)} className="text-[#444444] text-sm md:text-base font-medium hover:underline">
             Contribute
           </button>
-          <button onClick={() => scrollToSection(descRef)} className="text-[#444444] font-medium hover:underline">
+          <button onClick={() => scrollToSection(descRef)} className="text-[#444444] text-sm md:text-base font-medium hover:underline">
             Description
           </button>
-          <button onClick={() => scrollToSection(teamRef)} className="text-[#444444] font-medium hover:underline">
+          <button onClick={() => scrollToSection(teamRef)} className="text-[#444444] text-sm md:text-base font-medium hover:underline">
             Team
           </button>
          {isOwner&&(
-           <button onClick={() => scrollToSection(allbrandRef)} className="text-[#444444] font-medium hover:underline">
+           <button onClick={() => scrollToSection(allbrandRef)} className="text-[#444444] text-sm md:text-base font-medium hover:underline">
             All brand
           </button>
          )}
-         <button onClick={() => scrollToSection(questionRef)} className="text-[#444444] font-medium hover:underline">
+         <button onClick={() => scrollToSection(questionRef)} className="text-[#444444] text-sm md:text-base font-medium hover:underline">
             FAQ
           </button>
         </div>

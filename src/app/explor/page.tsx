@@ -135,7 +135,7 @@ function Explore() {
         </div>
         <div className="shadow-md rounded-b-2xl  pb-10">
           <h2 className="text-[#644FC1] text-lg font-bold md:text-2xl mt-4 text-center">Categories&Subcategories</h2>
-          <div className="flex md:flex-row flex-col items-center justify-center mt-6 gap-6.5 md:px-37 ">
+          <div className="flex md:flex-row flex-col items-center justify-center mt-6 gap-6.5 px-4 md:px-37 ">
             <Select value={categorifilter} onValueChange={setcategorifilter}>
               <SelectTrigger className="border border-[#644FC1] border-2 px-5 py-1.5 w-full bg-[#F5F5F5] text-[#644FC1]
              focus:outline-none focus:ring-0 focus:ring-offset-0 font-medium">

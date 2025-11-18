@@ -46,7 +46,7 @@ function Header() {
         type: "spring",
         stiffness: 120
       }}
-    className="fixed top-0 left-0 w-full z-50 bg-white md:px-10 px-5 py-2 border-b border-b-1 border-[#D7CFF9] flex items-center justify-between">
+    className="fixed top-0 left-0 w-full z-50 bg-white md:px-10 px-5 md:py-2 py-1.5 border-b border-b-1 border-[#D7CFF9] flex items-center justify-between">
   
 
   <div className="flex items-center">

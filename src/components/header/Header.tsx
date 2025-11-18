@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import {HoverCard,HoverCardContent,HoverCardTrigger}from '@/components/ui/hover-card'
 import Hover, { username } from './hover';
-
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [sessioon ,setsession]=useState<Session|null>(null)
@@ -30,7 +29,7 @@ function Header() {
       setsession(session) // هر تغییری در login/logout بلافاصله اعمال میشه
     })
 
-    // تمیز کردن لیسنر
+  
     return () => {
       listener.subscription.unsubscribe()
     }

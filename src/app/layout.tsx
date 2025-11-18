@@ -4,6 +4,7 @@ import "./globals.css";
 import ToastProvider from "@/components/Tostprovider";
 import { DataProvider } from "@/hooks/Datacontext";
 import Header from './../components/header/Header';
+import Footer from './../components/Footer/Footer';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,7 +34,10 @@ export default function RootLayout({
         <DataProvider>
       
         <Header />
-    <div className="pt-15">{children}</div>
+    <div className="pt-15 mb-16">{children}
+      
+    </div>
+    <Footer />
   
         </DataProvider>
         <ToastProvider />

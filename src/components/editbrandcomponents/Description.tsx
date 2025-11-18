@@ -7,7 +7,7 @@ import Editdescriptionmodal from "../modal/Editdescriptionmodal"
 interface dec {
     description: string
 }
-function Description() {
+function Description({isOwner}:{isOwner:boolean}) {
     const { branddid } = useData()
     const [description, setdescription] = useState<dec | null>(null)
     const [open, setopen] = useState<boolean>(false)
@@ -26,11 +26,16 @@ function Description() {
     return (
         <div>
             <div className="flex items-center justify-start gap-3 mb-4">
-                <h2 className="text-[#444444] md:text-2xl text-lg font-semibold m-0 leading-none">About</h2>
+               <div className="flex items-center gap-1.5">
+            <div className="w-3 h-3 bg-[#644FC1] rounded-xs"></div>
+            <h1 className="text-[#444444] md:text-2xl text-lg font-semibold text-center">
+        About
+      </h1>
+        </div>
                 <Dialog open={open} onOpenChange={setopen}>
-                    <DialogTrigger className="px-3 py-1 rounded bg-[#EDE9FE] border border-[#AA99EC] text-[#644FC1] font-medium text-sm md:text-base hover:bg-[#DDD6FE] transition leading-none">
+                    {isOwner&&(<DialogTrigger className="px-3 py-1 rounded bg-[#EDE9FE] border border-[#AA99EC] text-[#644FC1] font-medium text-sm md:text-base hover:bg-[#DDD6FE] transition leading-none">
                         Edit
-                    </DialogTrigger>
+                    </DialogTrigger>)}
                     <DialogContent>
                         <Editdescriptionmodal fechdata={fechdata} setopen={setopen} />
                     </DialogContent>

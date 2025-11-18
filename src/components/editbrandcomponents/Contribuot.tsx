@@ -26,7 +26,7 @@ export type Contribute = {
 };
 
 
-function Contribuot() {
+function Contribuot({isOwner}:{isOwner:boolean}) {
     const { branddid } = useData()
     const [openmodal , setopenmodal]=useState<number | null>(null)
     const [contributions, setContributions] = useState<Contribute[]>([]);
@@ -74,8 +74,14 @@ useEffect(()=>{
 
     return (
         <div className="">
-            <h2 className="text-[#444444] md:text-2xl text-lg font-semibold mb-2 md:mb-4">Coontribution Tier</h2>
-            <h3 className="text-[#444444] md:text-xl text-base font-medium ml-3 md:mb-11 mb-6">Recurring or One time</h3>
+            <div className="flex items-center gap-1.5">
+            <div className="w-3 h-3 bg-[#644FC1] rounded-xs"></div>
+            <h1 className="text-[#444444] md:text-2xl text-lg font-semibold text-center">
+        Coontribution Tier
+      </h1>
+        </div>
+           
+            <h3 className="text-[#444444] md:text-xl text-base font-normal ml-5 md:mb-11 mt-2 mb-6">Recurring or One time</h3>
             <div className="grid gap-13 grid-cols-1 md:grid-cols-4 md:gap-7">
                 {contributions.map((c) => (
                     <div key={c.id} className="shadow-md hover:shadow-xl transition rounded pb-5">
@@ -85,7 +91,7 @@ useEffect(()=>{
                             <p className="text-left mb-7  text-[#444444] font-semibold text-lg">start to <span className="text-[#644FC1]">{c.amont}</span></p>
                             <p className="line-clamp-5 break-words text-sm text-gray-400 text-left mb-5 w-full max-w-full">{c.deckription}</p>
                             <Dialog open={openmodal === c.id} onOpenChange={()=>setopenmodal(openmodal === c.id ? null : c.id)}>
-                                <DialogTrigger className="w-full bg-[#644FC1] rounded text-white py-1.5 ">Edit Tier</DialogTrigger>
+                                {isOwner&&(<DialogTrigger className="w-full bg-[#644FC1] rounded text-white py-1.5 ">Edit Tier</DialogTrigger>)}
                                 <DialogContent className="sm:max-w-3xl"><Editcontribuote id={c.id} setopenmodal={setopenmodal}  handleItemDeleted={handleItemDeleted}/></DialogContent>
                             </Dialog>
 
@@ -95,9 +101,9 @@ useEffect(()=>{
             </div>
             <div className="flex items-center justify-center">
                 <Dialog>
-                    <DialogTrigger className="w-16 h-16 flex items-center justify-center text-white text-3xl rounded-xl bg-[#644FC1] shadow-md hover:bg-[#533BB0] transition-colors mt-5">
+                    {isOwner&&(<DialogTrigger className="w-16 h-16 flex items-center justify-center text-white text-3xl rounded-xl bg-[#644FC1] shadow-md hover:bg-[#533BB0] transition-colors mt-5">
                         +
-                    </DialogTrigger>
+                    </DialogTrigger>)}
                     <DialogContent>
                         <SimpleForm />
                     </DialogContent>

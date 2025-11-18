@@ -6,6 +6,7 @@ import { useData } from "@/hooks/Datacontext"
 import { supabase } from "@/lib/supabaseClinet"
 import { useEffect, useState } from "react"
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi"
+import Link from "next/link"
 
 
 type BrandWithCount = {
@@ -51,7 +52,7 @@ function Explore() {
     // اگر عبارتی برای جستجو وارد شده
     if (query && query.trim() !== "") {
       supabaseQuery = supabaseQuery.or(
-        `name.ilike.%${query}%,category.ilike.%${query}%,subcategory.ilike.%${query}%`
+        `name.ilike.%${query}%,category.ilike.%${query}%`
       )
     }
     if (categorifilter && categorifilter !== "all") {
@@ -221,7 +222,7 @@ function Explore() {
         {/* دسکتاپ */}
         <div className="hidden md:grid grid-cols-3 gap-y-9 gap-x-6 max-w-4xl w-full mx-auto mb-10">
           {allbrand.map((c) => (
-            <div key={c.id} className="border border-1 border-[#E7E7E7] md:border-0 rounded-t-2xl">
+            <Link href={`/Brands/${c.id}`} key={c.id} className="border border-1 border-[#E7E7E7] md:border-0 rounded-t-2xl">
               <div className="md:w-full h-30 rounded-t-2xl">
                 <img src={c.coverurl || "/download.jpg"} alt="" className="w-full h-full rounded-t-2xl object-cover" />
               </div>
@@ -239,7 +240,7 @@ function Explore() {
                   <span className="text-lg font-semibold text-[#444444]">$11,558</span> money reased
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
 
           <div className="md:flex justify-center mt-5 col-span-full hidden">
@@ -256,7 +257,7 @@ function Explore() {
         <div className="md:hidden  md:mb-0">
           <div ref={sliderRef} className="keen-slider">
             {allbrand.map((c) => (
-              <div key={c.id} className="keen-slider__slide border border-2 border-[#E7E7E7] md:border-0 rounded-t-2xl">
+              <Link  href={`/Brands/${c.id}`}  key={c.id} className="keen-slider__slide border border-2 border-[#E7E7E7] md:border-0 rounded-t-2xl">
                 <div className="md:w-full h-30 rounded-t-2xl">
                   <img src={c.coverurl || "/download.jpg"} alt="" className="w-full h-full rounded-t-2xl object-cover" />
                 </div>
@@ -274,7 +275,7 @@ function Explore() {
                     <span className="text-lg font-semibold text-[#444444]">$11,558</span> money reased
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

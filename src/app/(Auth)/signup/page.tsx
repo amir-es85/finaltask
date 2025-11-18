@@ -92,9 +92,16 @@ export default function Signup() {
       toast.error('Unexpected error occurred. Please try again.')
     }
   }
+  const oauth= async()=>{
+    const {error,data}= await supabase.auth.signInWithOAuth({
+      provider:"google"
+    })
+if(error){toast.error(error.message)}
+
+  }
 
   return (
-    <div className="flex flex-col items-center mt-8 md:mt-0 md:justify-center">
+    <div className="flex flex-col items-center mt-8 md:mt-5 mb-3 md:justify-center">
       <div className="flex flex-col items-center justify-center gap-6 md:gap-5 md:mb-6">
         <h3 className="text-[#555555] font-normal text-base md:text-2xl md:font-medium md:text-[#3B3B3B]">
           Create your personal account
@@ -104,8 +111,12 @@ export default function Signup() {
         </h2>
         <img className="w-14 h-24 md:w-20 md:h-28" src="/Vector.png" alt="fund" />
       </div>
+      
+        
 
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col mt-5 w-[90%] md:w-[360px] md:mt-0">
+        <button className="bg-[#F5F5F5] rounded text-[#717171] pt-2 pb-2 font-light text-sm hover:opacity-50 border border-[#C7C6C6] md:pt-2 md:pb-2 md:text-base transition-colors disabled:opacity-50  mt-7 mb-10" onClick={oauth}>Continue with google</button>
+
         <label className="text-[#2D2D2D] font-light text-sm">Firstname</label>
         <input {...register('firstName')} className="border border-[#644FC1] rounded border-2 mb-3 p-1" />
 
@@ -130,6 +141,7 @@ export default function Signup() {
           <Link href='/login' className="text-[#644FC1] text-sm font-medium">Back to login</Link>
         </p>
       </form>
+      
 
       <ToastContainer
         position="top-right"

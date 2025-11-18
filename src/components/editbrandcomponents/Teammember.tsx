@@ -22,7 +22,7 @@ export type teammember = {
   brand_id: string;
 };
 
-export default function Teammember() {
+export default function Teammember({isOwner}:{isOwner:boolean}) {
   const [teammember, setteammember] = useState<teammember[]>([]);
   const { branddid } = useData();
 
@@ -44,11 +44,14 @@ export default function Teammember() {
 
   return (
     <div>
-      <h1 className="text-[#444444] md:text-2xl text-lg font-semibold mb-5 md:mb-5">
+      <div className="flex items-center gap-1.5">
+            <div className="w-3 h-3 bg-[#644FC1] rounded-xs"></div>
+            <h1 className="text-[#444444] md:text-2xl text-lg font-semibold text-center">
         Team
       </h1>
+        </div>
 
-      <div className="grid gap-10 grid-cols-1 md:grid-cols-4 md:gap-7">
+      <div className="grid gap-10 grid-cols-1 md:grid-cols-4 md:gap-7 mt-6">
         {teammember.map((c) => (
           <div
             key={c.id}
@@ -56,9 +59,9 @@ export default function Teammember() {
           >
             {/* آیکون ویرایش */}
             <Dialog>
-              <DialogTrigger className="sm:block hidden absolute top-3 right-3 text-gray-500 hover:text-[#644FC1] py-1 bg-[#F5F5F5] px-2 rounded">
+              {isOwner&&(<DialogTrigger className="sm:block hidden absolute top-3 right-3 text-gray-500 hover:text-[#644FC1] py-1 bg-[#F5F5F5] px-2 rounded">
                 <FiEdit2 size={18} />
-              </DialogTrigger>
+              </DialogTrigger>)}
               <DialogContent className="sm:max-w-4xl sm:block hidden"><Editteammembermodal  fechdata={fechdata} id={c.id} /></DialogContent>
             </Dialog>
             <Drawer>
@@ -108,9 +111,9 @@ export default function Teammember() {
       {/* دکمه افزودن */}
       <div className="flex items-center justify-center">
         <Dialog>
-          <DialogTrigger className="w-16 h-16 flex items-center justify-center text-white text-3xl rounded-xl bg-[#644FC1] shadow-md hover:bg-[#533BB0] transition-colors mt-5">
+          {isOwner&&(<DialogTrigger className="w-16 h-16 flex items-center justify-center text-white text-3xl rounded-xl bg-[#644FC1] shadow-md hover:bg-[#533BB0] transition-colors mt-5">
             +
-          </DialogTrigger>
+          </DialogTrigger>)}
           <DialogContent>
             <Createteammembermodal fechdata={fechdata} />
           </DialogContent>

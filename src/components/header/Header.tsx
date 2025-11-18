@@ -57,7 +57,7 @@ function Header() {
 
   <ul className="md:flex items-center justify-center gap-4 hidden">
     <li className="text-[#444444] font-medium text-base"><Link href="/">Home</Link></li>
-    <li className="text-[#444444] font-medium text-base"><Link href="/">Explore</Link></li>
+    <li className="text-[#444444] font-medium text-base"><Link href="/explor">Explore</Link></li>
     <li className="text-[#444444] font-medium text-base"><Link href="/">About us</Link></li>
     <li className="text-[#444444] font-medium text-base"><Link href="/">Helps & Support</Link></li>
   </ul>
@@ -66,7 +66,7 @@ function Header() {
   <div className="flex items-center gap-6">
     {sessioon ? (
      <HoverCard>
-      <HoverCardTrigger className='w-10 h-10 flex items-center justify-center bg-[#EDE9FE] py-2 cursor-pointer rounded-full border border-2 text-[#644FC1] font-semibold border-[#D7CFF9]'>{fristname||"A"}{lastname||"M"}</HoverCardTrigger>
+      <HoverCardTrigger className='w-10 h-10 flex items-center justify-center bg-[#EDE9FE] py-2 cursor-pointer rounded-full border border-2 text-[#644FC1] font-semibold border-[#D7CFF9]'>{fristname||"F"}{lastname||"N"}</HoverCardTrigger>
       <HoverCardContent><Hover usernamee={username}/></HoverCardContent>
      </HoverCard>
     ) : (
@@ -89,7 +89,7 @@ function Header() {
             <div className="flex flex-col justify-between h-full p-6">
          
               <div className="flex flex-col gap-6 mt-4 text-lg font-medium text-[#270F94]">
-                <Link href="/" className="flex items-center justify-between">
+                <Link href="/explor" className="flex items-center justify-between">
                   Explore <FaArrowRight />
                 </Link>
                 <Link href="/" className="flex items-center justify-between">

@@ -1,5 +1,5 @@
 'use client'
-import ProtectedRoute from "@/components/ProtectedRoute"
+
 import { supabase } from "@/lib/supabaseClinet"
 import { useParams } from "next/navigation"
 import {
@@ -19,6 +19,8 @@ import Profilemodal from "@/components/modal/profilemodal";
 import Contribuot from "@/components/editbrandcomponents/Contribuot";
 import Description from './../../../components/editbrandcomponents/Description';
 import Teammember from './../../../components/editbrandcomponents/Teammember';
+import Allbrand from "@/components/editbrandcomponents/Allbrand";
+import Question from './../../../components/editbrandcomponents/Question';
 
 type platformdata = {
   brand_id: string
@@ -27,12 +29,27 @@ type platformdata = {
   id: string
 }
 
+
 function Brandpage() {
   const contribRef = useRef<HTMLDivElement>(null);
   const descRef = useRef<HTMLDivElement>(null);
   const teamRef = useRef<HTMLDivElement>(null);
+  const allbrandRef = useRef<HTMLDivElement>(null);
+  const questionRef = useRef<HTMLDivElement>(null);
   const params = useParams()
   const brandid = params.id 
+  const [userid,setuserid]=useState<string|undefined>("")
+  const getuserid= async()=>{
+    const { data: authdata, error: autheror } = await supabase.auth.getUser()
+        const userid = authdata?.user?.id
+    
+        if (autheror) {
+          console.error(autheror.message)
+        }
+        setuserid(userid)
+  }
+  useEffect(()=>{getuserid()},[userid])
+  
 
   const scrollToSection = (ref: React.RefObject<HTMLDivElement|null>) => {
     if (ref.current) {
@@ -43,6 +60,8 @@ function Brandpage() {
 
   const [platformdataa, setplatformdata] = useState<platformdata[] | null>(null)
   const { image, setimage,branddid,setbrandid } = useData()
+ 
+  
 
   const fechdata = async () => {
     const { data: imagedata, error: imageeror } = await supabase.from("branding").select("*").eq("id", brandid)
@@ -71,16 +90,19 @@ function Brandpage() {
   }, [brandid])
 
 
-
+const isOwner = userid === image?.userid;
 
   return (
-    <ProtectedRoute>
-      <div className="ml-4 mr-4 flex flex-col  justify-center">
-        <div className="bg-gradient-to-r from-[#6E79D6] via-[#9EA9FF] to-[#6E79D6] w-full py-5 px-4 flex flex-col rounded gap-3.5 md:gap-13 md:py-7 md:px-7">
+    
+      <div className="ml-4 mr-4 flex flex-col  justify-center mt-3 mb-8">
+        <div className="bg-gradient-to-r
+         from-[#6E79D6] via-[#9EA9FF] to-[#6E79D6] w-full py-5 px-4 flex flex-col rounded gap-3.5 md:gap-13 md:py-7 md:px-7">
           <Dialog>
-            <DialogTrigger className="self-end py-1.5 px-2 font-semibold bg-[#EDE9FE] text-[#644FC1] text-lg border border-2 border-[#AA99EC] rounded outline-0 text-center cursor-pointer md:py-3 md:block md:px-4 md:text-xl">
+            {isOwner &&(
+              <DialogTrigger className="self-end py-1.5 px-2 font-semibold bg-[#EDE9FE] text-[#644FC1] text-lg border border-2 border-[#AA99EC] rounded outline-0 text-center cursor-pointer md:py-3 md:block md:px-4 md:text-xl">
               Edit Cover
             </DialogTrigger>
+            )}
             < DialogContent>
               <DialogHeader>
                 <DialogTitle></DialogTitle>
@@ -106,9 +128,11 @@ function Brandpage() {
                 {/* لایه‌ی بنفش و دکمه */}
                 <div className="absolute inset-0 flex items-center justify-center  rounded-2xl  ">
                   <Dialog>
-                    <DialogTrigger className="bg-white/20 text-white font-medium text-sm px-3 py-1.5 rounded shadow-md border border-white/30 md:px-7 py-2">
+                    {isOwner && (
+                      <DialogTrigger className="bg-white/20 text-white font-medium text-sm px-3 py-1.5 rounded shadow-md border border-white/30 md:px-7 py-2">
                       Edit profile
                     </DialogTrigger>
+                    )}
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle></DialogTitle>
@@ -150,14 +174,26 @@ function Brandpage() {
           <button onClick={() => scrollToSection(teamRef)} className="text-[#444444] font-medium hover:underline">
             Team
           </button>
+         {isOwner&&(
+           <button onClick={() => scrollToSection(allbrandRef)} className="text-[#444444] font-medium hover:underline">
+            All brand
+          </button>
+         )}
+         <button onClick={() => scrollToSection(questionRef)} className="text-[#444444] font-medium hover:underline">
+            FAQ
+          </button>
         </div>
         <div className="flex flex-col mt-13 md:mt-23 gap-17 md:gap-30 max-w-5xl w-full mx-auto px-5 md:px-8">
-          <div ref={contribRef}><Contribuot /></div>
-          <div ref={descRef}><Description /></div>
-         <div ref={teamRef}> <Teammember /></div>
+          <div ref={contribRef}><Contribuot isOwner={isOwner}/></div>
+          <div ref={descRef}><Description  isOwner={isOwner}/></div>
+         <div ref={teamRef}> <Teammember  isOwner={isOwner}/></div>
+         {isOwner&&(
+          <div ref={allbrandRef}><Allbrand userid={userid}/></div>
+         )}
+         <div ref={questionRef}><Question isOwner={isOwner}/></div>
         </div>
       </div>
-    </ProtectedRoute>
+ 
   )
 }
 

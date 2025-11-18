@@ -164,7 +164,7 @@ const isOwner = userid === image?.userid;
 
 
         </div>
-        <div className="flex justify-center gap-5 md:gap-8 pb-2 border-b-1 border-b-[#E7E7E7] mt-10 ">
+        <div className="flex justify-center gap-3 md:gap-8 pb-2 border-b-1 border-b-[#E7E7E7] mt-10 ">
           <button onClick={() => scrollToSection(contribRef)} className="text-[#444444] text-sm md:text-base font-medium hover:underline">
             Contribute
           </button>

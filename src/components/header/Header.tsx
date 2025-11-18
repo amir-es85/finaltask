@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import {HoverCard,HoverCardContent,HoverCardTrigger}from '@/components/ui/hover-card'
 import Hover, { username } from './hover';
 function Header() {
+  const [open, setOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [sessioon ,setsession]=useState<Session|null>(null)
   const [user , setuser]=useState<username|null|undefined>(null)
@@ -64,8 +65,10 @@ function Header() {
 
   <div className="flex items-center gap-6">
     {sessioon ? (
-     <HoverCard>
-      <HoverCardTrigger className='w-10 h-10 flex items-center justify-center bg-[#EDE9FE] py-2 cursor-pointer rounded-full border border-2 text-[#644FC1] font-semibold border-[#D7CFF9]'>{fristname||"F"}{lastname||"N"}</HoverCardTrigger>
+     <HoverCard open={open} onOpenChange={setOpen}>
+      <HoverCardTrigger
+      onClick={() => setOpen(!open)}
+       className='w-10 h-10 flex items-center justify-center bg-[#EDE9FE] py-2 cursor-pointer rounded-full border border-2 text-[#644FC1] font-semibold border-[#D7CFF9]'>{fristname||"F"}{lastname||"N"}</HoverCardTrigger>
       <HoverCardContent><Hover usernamee={username}/></HoverCardContent>
      </HoverCard>
     ) : (

@@ -3,7 +3,7 @@ import { FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 function Footer() {
   return (
     <div className=" w-full bg-[#F5F5F5] py-7 pt-6 pb-3">
-<div className="flex w-full justify-between md:w-1/2 md:pl-20">
+<div className="flex w-full justify-between md:w-1/2 md:pl-20 px-6 md:px-0">
     <div className="flex flex-col gap-3">
         <p className="text-[#444444] font-medium text-base mb-2.5">ABOUT</p>
         <p className="text-[#444444] font-normal text-sm">about us</p>
@@ -31,7 +31,7 @@ function Footer() {
         <p className="text-sm font-normal text-[#444444]">Terms of use</p>
         <p className="text-sm font-normal text-[#444444]">Privaci policy</p>
     </div>
-    <div className="flex items-center gap-4 md:justify-start justify-between mt-5 md:mt-0">
+    <div className="flex items-center gap-4 md:justify-start justify-between mt-5 md:mt-0 md:px-6">
         <FaTwitter size={20} color="#444444" />
   <FaLinkedin size={20} color="#444444" />
   <FaGithub size={20} color="#444444" />

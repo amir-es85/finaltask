@@ -25,13 +25,13 @@ function Footer() {
     </div>
 
 </div>
-<div className="flex flex-col md:flex-row justify-between items-center mt-8 pt-5 border-t border-t-[#AA99EC]">
+<div className="flex flex-col md:flex-row justify-between items-center mt-8 pt-5 border-t border-t-[#AA99EC] md:px-6">
     <div className="flex gap-4 items-center md:justify-start justify-between">
         <p className="text-sm font-normal text-[#444444]">Trust&safety</p>
         <p className="text-sm font-normal text-[#444444]">Terms of use</p>
         <p className="text-sm font-normal text-[#444444]">Privaci policy</p>
     </div>
-    <div className="flex items-center gap-4 md:justify-start justify-between mt-5 md:mt-0 md:px-6">
+    <div className="flex items-center gap-4 md:justify-start justify-between mt-5 md:mt-0 ">
         <FaTwitter size={20} color="#444444" />
   <FaLinkedin size={20} color="#444444" />
   <FaGithub size={20} color="#444444" />

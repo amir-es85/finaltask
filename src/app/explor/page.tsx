@@ -42,6 +42,7 @@ function Explore() {
   const [categorifilter, setcategorifilter] = useState<string>("")
   const [cuntry, setcuntry] = useState("")
   const [order, setorder] = useState("")
+  const [sliderKey, setSliderKey] = useState(0)
 
   // ⬇️ تابع گرفتن داده‌ها از Supabase
   const fechdata = async (query?: string, isSearch = false) => {
@@ -103,10 +104,20 @@ function Explore() {
   }, [searchTerm])
 
   useEffect(() => {
-    if (slider && slider.current) {
-      slider.current.update()
-    }
+    if (!slider?.current) return
+    const raf = requestAnimationFrame(() => slider.current?.update())
+    return () => cancelAnimationFrame(raf)
   }, [allbrand])
+
+  useEffect(() => {
+    if (!slider?.current) return
+    slider.current.moveToIdx(0, true)
+    slider.current.update()
+  }, [order])
+
+  useEffect(() => {
+    setSliderKey((prev) => prev + 1)
+  }, [order, allbrand.length])
   useEffect(() => {
 
     fechdata(searchTerm, true)
@@ -135,7 +146,7 @@ function Explore() {
         </div>
         <div className="shadow-md rounded-b-2xl  pb-10">
           <h2 className="text-[#644FC1] text-lg font-bold md:text-2xl mt-4 text-center">Categories&Subcategories</h2>
-          <div className="flex md:flex-row flex-col items-center justify-center mt-6 gap-6.5 px-4 md:px-37 ">
+          <div className="flex md:flex-row flex-col items-center justify-center mt-6 gap-6.5  md:px-37 ">
             <Select value={categorifilter} onValueChange={setcategorifilter}>
               <SelectTrigger className="border border-[#644FC1] border-2 px-5 py-1.5 w-full bg-[#F5F5F5] text-[#644FC1]
              focus:outline-none focus:ring-0 focus:ring-offset-0 font-medium">
@@ -255,7 +266,7 @@ function Explore() {
 
         {/* موبایل */}
         <div className="md:hidden  md:mb-0">
-          <div ref={sliderRef} key={order} className="keen-slider">
+          <div ref={sliderRef} key={sliderKey} className="keen-slider">
             {allbrand.map((c) => (
               <Link  href={`/Brands/${c.id}`}  key={c.id} className="keen-slider__slide border border-2 border-[#E7E7E7] md:border-0 rounded-t-2xl">
                 <div className="md:w-full h-30 rounded-t-2xl">

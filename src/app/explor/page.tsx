@@ -255,7 +255,7 @@ function Explore() {
 
         {/* موبایل */}
         <div className="md:hidden  md:mb-0">
-          <div ref={sliderRef} className="keen-slider">
+          <div ref={sliderRef} key={order} className="keen-slider">
             {allbrand.map((c) => (
               <Link  href={`/Brands/${c.id}`}  key={c.id} className="keen-slider__slide border border-2 border-[#E7E7E7] md:border-0 rounded-t-2xl">
                 <div className="md:w-full h-30 rounded-t-2xl">
